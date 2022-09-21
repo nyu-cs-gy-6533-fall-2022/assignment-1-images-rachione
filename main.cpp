@@ -3,6 +3,9 @@
 #include "MyImageClass.h"
 using namespace std;
 int main() {
+	MyImageClass p2("./inputs/P2.ppm");
+	p2.save("./outputs/P2_P6.ppm");
+
 	MyImageClass image1("./inputs/Mandrill.ppm");
 	MyImageClass image2("./inputs/tandon_stacked_color.ppm");
 	MyImageClass image3("./inputs/Empire_State_Building.ppm");

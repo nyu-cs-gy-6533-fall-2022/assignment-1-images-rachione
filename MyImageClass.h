@@ -64,23 +64,27 @@ public:
 
 
         if (img.magicNum == "P3" || img.magicNum == "P2") {
+            int times =  (img.magicNum == "P3") ? 1 : 3;
             int p;
             while (file >> p) {
-                img.pixels.push_back(p / 255.f);
+                for (int i = 0; i < times; i++) {
+                    img.pixels.push_back(p / 255.f);
+                }
+
             }
 
         } else if (img.magicNum == "P6" || img.magicNum == "P5") {
+            int times =  (img.magicNum == "P6") ? 1 : 3;
             file.get();
             //includes whitespace
             file.unsetf(ios_base::skipws);
             unsigned char p[3];
             while (file.read(reinterpret_cast<char *>(p), 3)) {
-                img.pixels.push_back(p[0] / 255.f);
-                img.pixels.push_back(p[1] / 255.f);
-                img.pixels.push_back(p[2] / 255.f);
-
-
-
+                for (int i = 0; i < times; i++) {
+                    img.pixels.push_back(p[0] / 255.f);
+                    img.pixels.push_back(p[1] / 255.f);
+                    img.pixels.push_back(p[2] / 255.f);
+                }
             }
 
         } else {
@@ -157,12 +161,55 @@ public:
     }
 
     MyImageClass edgeDetection() {
+        int width = img.width;
+        int height = img.height;
+        float r = 0.299F;
+        float g = 0.587F;
+        float b = 0.114F;
+        float kernelX[3][3] = {
+            { -1, 0, 1 },
+            { -2, 0, 2 },
+            { -1, 0, 1 }
+        };
+        float kernelY[3][3] = {
+            { -1, -2, -1 },
+            { 0,  0,  0 },
+            { 1,  2,  1 }
+        };
         MyImageClass resCls = MyImageClass(*this);
-        for (int i = 0; i < img.pixels.size(); i++) {
-            float res = img.pixels[i];
-            resCls.img.pixels.push_back(clamp(res));
+        int i = 0;
+        while (i < img.pixels.size()) {
+            float res = (img.pixels[i] * r) + (img.pixels[i + 1] * g) + (img.pixels[i + 2] * b);
+            resCls.img.pixels.push_back(res);
+            i += 3;
         }
 
+
+        for (int row  = 1; row  < height   - 1; row ++) {
+            for (int col  = 1; col  < width  - 1; col ++) {
+                float resX = 0.f;
+                float resY = 0.f;
+
+                for (int a = 0; a < 3; a++) {
+                    for (int b = 0; b < 3; b++) {
+                        resX += resCls.img.pixels[(row - 1 + a) * width + col - 1 + b] * kernelX[a][b];
+                        resY += resCls.img.pixels[(row - 1 + a) * width + col - 1 + b] * kernelY[a][b];
+
+                    }
+                }
+                resX = clamp(resX);
+                resY = clamp(resY);
+                float val = sqrt(resX * resX + resY * resY);
+                resCls.img.pixels[row * width + col] = clamp(val);
+            }
+        }
+        vector<float> temp;
+        for (auto p : resCls.img.pixels) {
+            for (int t = 0; t < 3; t++) {
+                temp.push_back(p);
+            }
+        }
+        resCls.img.pixels = temp;
         return resCls;
     }
 
