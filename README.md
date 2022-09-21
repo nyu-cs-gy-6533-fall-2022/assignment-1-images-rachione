@@ -24,6 +24,7 @@ img = image1 + image2;
 
 ## Subtraction
 ![](figure/subtraction.jpg)
+
 My subtraction rule is that when the values is 0, it becomes black.
 
 Mandrill - NYU
