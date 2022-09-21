@@ -2,7 +2,7 @@
 Executable file is in the ./build/build folder, and there're two additional folders ./inputs and ./outputs for image testing. To run the program, the current working directory should be in the top folder, and run ./build/build/main.exe.
 
 # PPM
-This program can read P2, P3, P5, and P6 formats of PPM images, and can mix different types for image arithmetic. The output is always P6 for performance. 
+This program can read P2, P3, P5, and P6 formats of PPM images, and can mix different types for image arithmetic.The output is always P6 for the best performance. However, these images must be the same size.  
 
 Convert P2 to P6 format.
 ```cpp
