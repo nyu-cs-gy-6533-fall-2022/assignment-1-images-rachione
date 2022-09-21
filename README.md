@@ -15,6 +15,7 @@ p2.save("./outputs/P2_P6.ppm");
 ## Addition
 ![](figure/addition.jpg)
 
+My addition rule is that when the values are added up to 255, it becomes plain white. So the white color in the image filter out another image pixel.
 Mandrill + NYU
 ```cpp
 img = image1 + image2;
@@ -22,7 +23,7 @@ img = image1 + image2;
 
 ## Subtraction
 ![](figure/subtraction.jpg)
-
+My subtraction rule is that when the values is 0, it becomes black.
 Mandrill - NYU
 ```cpp
 img = image1 - image2;
