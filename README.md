@@ -75,6 +75,7 @@ img = image1.alphaCompositing(image2, 0.85f);
 
 ## Edge Detection
 ![](figure/edgeDetection.jpg)
+
 Sobel operator with  X+Y Kernels
 ```cpp
 img = image1.edgeDetection();
