@@ -8,7 +8,7 @@ int main() {
 	MyImageClass image3("./inputs/Empire_State_Building.ppm");
 	MyImageClass img;
 
-	cout << "first pixel value " << image1[0] << endl;
+	cout << "first pixel value is " << image1[0] << endl;
 
 	//Image Arithmetic
 	img = image1 + image2;

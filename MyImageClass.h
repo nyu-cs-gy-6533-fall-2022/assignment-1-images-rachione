@@ -146,10 +146,10 @@ public:
         return resCls;
     }
 
-    MyImageClass alphaCompositing(const MyImageClass &frontPic, float alpha) {
+    MyImageClass alphaCompositing(const MyImageClass &backPic, float alpha) {
         MyImageClass resCls = MyImageClass(*this);
         for (int i = 0; i < img.pixels.size(); i++) {
-            float res = img.pixels[i] * (1.f - alpha) + frontPic.img.pixels[i] * (alpha);
+            float res = img.pixels[i] * (alpha) + backPic.img.pixels[i] * (1.f - alpha);
             resCls.img.pixels.push_back(clamp(res));
         }
 
