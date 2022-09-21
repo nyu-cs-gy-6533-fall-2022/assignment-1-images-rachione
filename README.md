@@ -1,4 +1,4 @@
-# assignment-1-images-rachione
+# Instructions
 Executable file is in the ./build/build folder, and there're two additional folders ./inputs and ./outputs for image testing. To run the program, the current working directory should be in the top folder, and run ./build/build/main.exe.
 
 # PPM
