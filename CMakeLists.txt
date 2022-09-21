@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY build)
 
-add_executable(main.out main.cpp MyImageClass.h)
+add_executable(main main.cpp MyImageClass.h)
