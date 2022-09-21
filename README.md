@@ -21,6 +21,13 @@ Mandrill - NYU
 img = image1 - image2;
 ```
 
+## Multiplication
+![](figure/multiplication.jpg)
+
+NYU * 3.1
+```cpp
+img = image2 * 3.1f;
+```
 ## Addition Assignment
 ![](figure/additionassignment.jpg)
 
