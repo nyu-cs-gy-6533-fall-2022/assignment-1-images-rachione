@@ -6,36 +6,44 @@ This program can read P2, P3, P5, and P6 formats of PPM images, and can mix diff
 # Tasks
 
 ## Addition
-![](outputs/addition.ppm)
+![](figure/addition.jpg)
 ```cpp
 img = image1 + image2;
 ```
 
 ## Subtraction
+![](figure/subtraction.jpg)
 ```cpp
 img = image1 - image2;
 ```
 
 ## Addition Assignment
+![](figure/additionassignment.jpg)
 ```cpp
 image3 += image2;
 ```
 
 ## Subtraction Assignment
+![](figure/subtractionassignment.jpg)
 ```cpp
 image3 -= image2;
 ```
 ## array index operator
+![](figure/addition.jpg)
+
 ```cpp
+//first pixel value 164
 cout << "first pixel value " << image1[0] << endl;
 ```
 
 ## Gamma Correction
+![](figure/gammaCorrection.jpg)
 ```cpp
 img = image1.gammaCorrection(2.f);
 ```
 
 ## Alpha Compositing
+![](figure/alphaCompositing.jpg)
 ```cpp
 img = image1.alphaCompositing(image2, 0.85f);
 ```
