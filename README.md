@@ -55,7 +55,8 @@ Empire State Building -= NYU
 image3 -= image2;
 ```
 ## array index operator
-return 8-bit per pixel color at a specific index in image, RGB full color image will have 3 value for each pixel.
+Return 8-bit color value at a specific index, RGB and grayscale images have the same 3 values for each pixel. E.g. white color is [255,255,255], Image[1] return 255.
+
 ```cpp
 //first pixel value is 164
 cout << "first pixel value is " << image1[0] << endl;
