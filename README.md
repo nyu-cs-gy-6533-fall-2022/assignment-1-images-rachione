@@ -55,7 +55,7 @@ Empire State Building -= NYU
 image3 -= image2;
 ```
 ## array index operator
-Return 8-bit color value at a specific index, RGB and grayscale images have the same 3 values for each pixel. For example, white color is [255,255,255], Image[1] returns the g value for the first pixel which is 255, if you want the b value at the 15th pixel then write Image[15*3+3]
+Return 8-bit color value at a specific index, RGB and grayscale images have the same 3 values for each pixel. For example, white color is [255,255,255], Image[1] returns the g value for the first pixel which is 255, if you want the b value at the 15th pixel then use Image[15*3+3]
 
 
 ```cpp
