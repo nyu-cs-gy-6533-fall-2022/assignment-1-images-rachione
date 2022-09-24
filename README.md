@@ -82,7 +82,23 @@ img = image1.alphaCompositing(image2, 0.85f);
 ## Edge Detection
 ![](figure/edgeDetection.jpg)
 
-Sobel operator with  X+Y Kernels
+Only Sobel operator with  X+Y Kernels
 ```cpp
 img = image1.edgeDetection();
+```
+
+![](figure/blurring.jpg)
+
+blurring
+```cpp
+img = image1.blurring();
+```
+
+![](figure/blurring_to_edgeDetection.jpg)
+
+blurring then Sobel operator
+```cpp
+img = image1.blurring();
+img = img.edgeDetection();
+img.save("./outputs/blurring_to_edgeDetection.ppm");
 ```
