@@ -89,14 +89,14 @@ img = image1.edgeDetection();
 
 ![](figure/blurring.jpg)
 
-blurring
+Blurring
 ```cpp
 img = image1.blurring();
 ```
 
 ![](figure/blurring_to_edgeDetection.jpg)
 
-blurring then Sobel operator
+Blurring then Sobel operator
 ```cpp
 img = image1.blurring();
 img = img.edgeDetection();
