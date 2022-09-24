@@ -19,6 +19,7 @@ struct PPM
     string magicNum;
     int width, height, maxCol;
     vector<float> pixels;
+    bool isGrayScale;
 };
 class MyImageClass {
 
@@ -40,6 +41,7 @@ public:
         img.width = cls.img.width;
         img.height = cls.img.height;
         img.maxCol = cls.img.maxCol;
+        img.isGrayScale = cls.img.isGrayScale;
     }
 
 
@@ -65,6 +67,7 @@ public:
 
         if (img.magicNum == "P3" || img.magicNum == "P2") {
             int times =  (img.magicNum == "P3") ? 1 : 3;
+            img.isGrayScale = (img.magicNum == "P2");
             int p;
             while (file >> p) {
                 for (int i = 0; i < times; i++) {
@@ -75,6 +78,7 @@ public:
 
         } else if (img.magicNum == "P6" || img.magicNum == "P5") {
             int times =  (img.magicNum == "P6") ? 1 : 3;
+            img.isGrayScale = (img.magicNum == "P5");
             file.get();
             //includes whitespace
             file.unsetf(ios_base::skipws);
@@ -159,24 +163,15 @@ public:
 
         return resCls;
     }
-
-    MyImageClass edgeDetection() {
+    MyImageClass applyKernel(float kernel[3][3]) {
         int width = img.width;
         int height = img.height;
+
         float r = 0.299F;
         float g = 0.587F;
         float b = 0.114F;
-        float kernelX[3][3] = {
-            { -1, 0, 1 },
-            { -2, 0, 2 },
-            { -1, 0, 1 }
-        };
-        float kernelY[3][3] = {
-            { -1, -2, -1 },
-            { 0,  0,  0 },
-            { 1,  2,  1 }
-        };
         MyImageClass resCls = MyImageClass(*this);
+
         int i = 0;
         while (i < img.pixels.size()) {
             float res = (img.pixels[i] * r) + (img.pixels[i + 1] * g) + (img.pixels[i + 2] * b);
@@ -184,6 +179,42 @@ public:
             i += 3;
         }
 
+        for (int row  = 1; row  < height   - 1; row ++) {
+            for (int col  = 1; col  < width  - 1; col ++) {
+                float res = 0.f;
+
+                for (int a = 0; a < 3; a++) {
+                    for (int b = 0; b < 3; b++) {
+                        res += resCls.img.pixels[(row - 1 + a) * width + col - 1 + b] * kernel[a][b];
+                    }
+                }
+                resCls.img.pixels[row * width + col] = clamp(res);
+            }
+        }
+        vector<float> temp;
+        for (auto p : resCls.img.pixels) {
+            for (int t = 0; t < 3; t++) {
+                temp.push_back(p);
+            }
+        }
+        resCls.img.pixels = temp;
+        return resCls;
+    }
+    MyImageClass applyKernel(float kernelX[3][3], float kernelY[3][3]) {
+        int width = img.width;
+        int height = img.height;
+
+        float r = 0.299F;
+        float g = 0.587F;
+        float b = 0.114F;
+        MyImageClass resCls = MyImageClass(*this);
+
+        int i = 0;
+        while (i < img.pixels.size()) {
+            float res = (img.pixels[i] * r) + (img.pixels[i + 1] * g) + (img.pixels[i + 2] * b);
+            resCls.img.pixels.push_back(res);
+            i += 3;
+        }
 
         for (int row  = 1; row  < height   - 1; row ++) {
             for (int col  = 1; col  < width  - 1; col ++) {
@@ -211,6 +242,28 @@ public:
         }
         resCls.img.pixels = temp;
         return resCls;
+    }
+    MyImageClass blurring() {
+        float kernel[3][3] = {
+            { 0.1111111111, 0.1111111111, 0.1111111111 },
+            { 0.1111111111, 0.1111111111, 0.1111111111 },
+            { 0.1111111111, 0.1111111111, 0.1111111111}
+        };
+        return applyKernel(kernel);
+
+    }
+    MyImageClass edgeDetection() {
+        float kernelX[3][3] = {
+            { -1, 0, 1 },
+            { -2, 0, 2 },
+            { -1, 0, 1 }
+        };
+        float kernelY[3][3] = {
+            { -1, -2, -1 },
+            { 0,  0,  0 },
+            { 1,  2,  1 }
+        };
+        return applyKernel(kernelX, kernelY);
     }
 
 

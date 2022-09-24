@@ -35,8 +35,19 @@ int main() {
 	img = image1.alphaCompositing(image2, 0.85f);
 	img.save("./outputs/alphaCompositing.ppm");
 
+
+
+	img = image1.blurring();
+	img.save("./outputs/blurring.ppm");
+
 	img = image1.edgeDetection();
 	img.save("./outputs/edgeDetection.ppm");
+
+	img = image1.blurring();
+	img = img.edgeDetection();
+	img.save("./outputs/blurring_to_edgeDetection.ppm");
+
+
 
 
 
