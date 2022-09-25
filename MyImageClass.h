@@ -7,6 +7,16 @@
 #include <valarray>
 using namespace std;
 
+float average(float v) {
+    if (v > 1) {
+        v -= 1;
+    }
+    else if (v < 0) {
+        v = 0;
+    }
+    return v;
+}
+
 float clamp(float v) {
     return min(1.f, max(0.f, v));
 }
@@ -114,14 +124,14 @@ public:
     MyImageClass operator + (const MyImageClass  &cls) {
         MyImageClass resCls = MyImageClass(*this);
         for (int i = 0; i < img.pixels.size(); i++) {
-            resCls.img.pixels.push_back(clamp(img.pixels[i] + cls.img.pixels[i]));
+            resCls.img.pixels.push_back(average(img.pixels[i] + cls.img.pixels[i]));
         }
 
         return resCls;
     }
     MyImageClass& operator += (const MyImageClass  &cls) {
         for (int i = 0; i < img.pixels.size(); i++) {
-            img.pixels[i] = clamp(img.pixels[i] + cls.img.pixels[i]);
+            img.pixels[i] = average(img.pixels[i] + cls.img.pixels[i]);
         }
         return *this;
     }
