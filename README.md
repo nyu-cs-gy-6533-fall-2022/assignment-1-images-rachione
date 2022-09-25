@@ -15,7 +15,7 @@ p2.save("./outputs/P2_P6.ppm");
 ## Addition
 ![](figure/addition.jpg)
 
-My addition rule is that when the values are added up to 255, it becomes plain white. So the white color in the image filter out another image pixel.
+it average the result of adding the two pixels values.
 
 Mandrill + NYU
 ```cpp
