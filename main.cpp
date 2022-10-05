@@ -19,8 +19,11 @@ int main() {
 	img = image1 - image2;
 	img.save("./outputs/subtraction.ppm");
 
-	image3 += image2;
-	image3.save("./outputs/additionassignment.ppm");
+	MyImageClass image4("./inputs/Mandrill.ppm");
+	MyImageClass image5("./inputs/tandon_stacked_color.ppm");
+
+	image4 += image5;
+	image4.save("./outputs/additionassignment.ppm");
 	image3 -= image2;
 	image3.save("./outputs/subtractionassignment.ppm");
 

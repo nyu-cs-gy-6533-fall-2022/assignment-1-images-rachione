@@ -124,7 +124,7 @@ public:
     MyImageClass operator + (const MyImageClass  &cls) {
         MyImageClass resCls = MyImageClass(*this);
         for (int i = 0; i < img.pixels.size(); i++) {
-            resCls.img.pixels.push_back(average(img.pixels[i] + cls.img.pixels[i]));
+            resCls.img.pixels.push_back(img.pixels[i] + cls.img.pixels[i]);
         }
 
         return resCls;
