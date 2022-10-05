@@ -40,7 +40,8 @@ NYU * 3.1
 img = image2 * 3.1f;
 ```
 ## Addition Assignment
-It average the pixel value.
+It average the pixel value for requirement.
+
 ![](figure/additionassignment.jpg)
 
 Mandrill += NYU
