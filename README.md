@@ -43,9 +43,9 @@ img = image2 * 3.1f;
 It average the pixel value.
 ![](figure/additionassignment.jpg)
 
-Empire State Building += NYU
+Mandrill += NYU
 ```cpp
-image3 += image2;
+image4 += image5;
 ```
 
 ## Subtraction Assignment
