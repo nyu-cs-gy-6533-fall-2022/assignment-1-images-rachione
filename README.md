@@ -15,7 +15,7 @@ p2.save("./outputs/P2_P6.ppm");
 ## Addition
 ![](figure/addition.jpg)
 
-it average the result of adding the two pixels values.
+it add the two pixels values.
 
 Mandrill + NYU
 ```cpp
@@ -40,11 +40,13 @@ NYU * 3.1
 img = image2 * 3.1f;
 ```
 ## Addition Assignment
+It average the pixel value for requirement.
+
 ![](figure/additionassignment.jpg)
 
-Empire State Building += NYU
+Mandrill += NYU
 ```cpp
-image3 += image2;
+image4 += image5;
 ```
 
 ## Subtraction Assignment
