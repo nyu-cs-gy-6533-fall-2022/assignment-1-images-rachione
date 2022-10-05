@@ -8,13 +8,8 @@
 using namespace std;
 
 float average(float v) {
-    if (v > 1) {
-        v -= 1;
-    }
-    else if (v < 0) {
-        v = 0;
-    }
-    return v;
+
+    return v / 2;
 }
 
 float clamp(float v) {
